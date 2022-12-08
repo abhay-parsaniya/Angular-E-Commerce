@@ -1,0 +1,29 @@
+<div class="container border border-dark my-3">
+
+    <table class="table caption-top">
+        <thead>
+            <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">User Name</th>
+                <th scope="col">User Email</th>
+                <th scope="col">User DOB</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <th scope="row">1</th>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.date}}</td>
+                <td>
+                    <app-button class="btn btn-sm btn-warning mx-2" label="Edit" (onClick)="onEditUser(user.id)">
+                    </app-button>
+                    <app-button class="btn btn-sm btn-danger mx-2" label="Delete"
+                        (onClick)="onDeleteUser(user.id)"></app-button>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

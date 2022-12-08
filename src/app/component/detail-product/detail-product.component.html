@@ -1,0 +1,23 @@
+<div class="card mb-3">
+    <div class="row g-0">
+        <div class="col-md-6 text-center">
+            <img src="{{product.image}}" class="img-fluid rounded-start" >
+        </div>
+       
+        <div class="col-md-6 text-center">
+            <div class="card-body">
+                <h1 class="card-title">Name:{{product.name}}</h1>
+                <p class="card-text">Description:{{product.description}}</p>
+                <p class="card-text">
+                    <span class="text-muted">Available:
+                        {{product.stock === 'true' ? 'In Stock' : 'Out of Stock'}}
+                    </span>   
+                </p>
+                <p class="card-text">Price $:{{product.price}}</p>
+                <p class="card-text">Category:{{product.category}}</p>
+                <app-button class="btn btn-primary" [disabled]="product.stock !== 'true'" [label]="'Add to cart'" (click)="product.stock === 'true' && addtocart(product)">Add to cart</app-button>
+
+            </div>
+        </div>
+    </div>
+</div>

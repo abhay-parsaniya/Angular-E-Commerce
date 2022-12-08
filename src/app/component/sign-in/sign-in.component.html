@@ -1,0 +1,29 @@
+<!-- <div class="signin">
+    <form class="signin-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email" />
+        <input type="password" class="form-control" formControlName="password" placeholder="Password" />
+        <app-button class="btn btn-success" [color]="'primary'" [label]="'Sign In'" [type]="'submit'" [disabled]="!signInForm.valid"></app-button>
+    </form>
+</div> -->
+<div class="formparent">
+
+    <form class="signin-form" [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+        
+        <!-- <div class="imgcontainer">
+          <img src="https://media.istockphoto.com/id/1224774389/vector/user-profile-or-my-account-avatar-login-icon-with-man-male-face-smile-symbol-flat-vector.jpg?s=170667a&w=0&k=20&c=gm8BmPyZ3ytVUz8vhJ3vR3O-3Ou84z7zsHiZa3kjbd0=" alt="Avatar" class="avatar">
+        </div> -->
+        <h2 class="text-center">Login</h2>
+        <div class="container">
+          <label for="uname"><b>Email</b></label>
+          <input type="email" class="form-control" formControlName="email" placeholder="Email"  required/>
+      
+          <label for="psw"><b>Password</b></label>
+          <input type="password" class="form-control" formControlName="password" placeholder="Password" required/>
+              
+          <div class="my-3">
+              <app-button class="btn btn-success mx-2" [label]="'Sign In'" [type]="'submit'" [disabled]="!signInForm.valid"></app-button>
+              <a routerLink="/register"><app-button class="btn btn-warning mx-2" [label]="'New user?'" [type]="'submit'"></app-button></a>
+            </div>
+        </div>
+      </form>
+</div>

@@ -1,0 +1,45 @@
+<header>
+    <div class="navbar navbar-dark bg-primary shadow-sm">
+        <div class="navbar-brand align-item-center d-flex">
+            <i style="font-size: 40px;" class="fas fa-shipping-fast">&nbsp;
+
+            </i>
+            <strong style="font-size: 30px;" *ngIf="isAdmin">
+                <a routerLink="/admin" class="text-white text-decoration-none" style="font-size: 30px;">E-Admin</a>
+            </strong>
+            <strong style="font-size: 30px;" *ngIf="!isAdmin">
+                <a routerLink="/" class="text-white text-decoration-none">E-Commerce</a>
+            </strong>
+            <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="searchTerm" (keyup)="search($event)"
+                    placeholder="search products">
+            </div>
+            <!-- <span class="fas fa-search search-icon"></span> -->
+            <div class="d-flex justify-content-between align-items-center mx-5" *ngIf="isAdmin">
+                <ul class="d-flex list-unstyled align-item-center">
+                    <li class="cursor-pointer"><a [routerLink]="['/admin']" class="px-3 text-decoration-none text-white">Listed products</a></li>
+                    <li class="cursor-pointer"><a routerLink="admin/users" class="px-3 text-decoration-none text-white">Users</a></li>
+                </ul>                
+            </div>
+        </div>
+        <div class="d-flex">
+            <button routerLink="cart" queryParamsHandling="preserve" class="btn btn-primary" *ngIf="!isAdmin">
+                <i style="font-size: 30px;" class="fas fa-cart-plus"></i>
+                <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>
+            </button>
+
+            <div *ngIf="!isHeaderBtnShown">
+                <button type="button" class="btn btn-primary"><a class="text-white text-decoration-none"
+                        routerLink="login">Sign
+                        In</a></button>
+                <button type="button" class="btn btn-primary"><a class="text-white text-decoration-none"
+                        routerLink="register">Sign
+                        Up</a></button>
+            </div>
+            <div *ngIf="isHeaderBtnShown">
+                <button type="button" class="btn btn-danger mx-3" (click)="onLogOut()"><a
+                        class="text-white text-decoration-none" routerLink="">Log Out</a></button>
+            </div>
+        </div>
+    </div>
+</header>

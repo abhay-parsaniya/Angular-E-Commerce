@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { Products } from 'src/app/model/products.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { CartService } from 'src/app/service/cart.service';
@@ -17,7 +17,7 @@ export class DetailProductComponent implements OnInit {
   public product!: Products;
   isHeaderBtnShown: boolean = false
 
-  constructor(private cartService: CartService, private authService: AuthService, public route: ActivatedRoute, private productsService: ProductsService, private notifyService: NotificationService) { }
+  constructor(private cartService: CartService, private router: Router, private authService: AuthService, public route: ActivatedRoute, private productsService: ProductsService, private notifyService: NotificationService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((qParams: any) => {
@@ -32,12 +32,19 @@ export class DetailProductComponent implements OnInit {
   }
 
   addtocart(item: any) {
-    this.cartService.addtoCart(item).subscribe(res => {
-      if (res) {
-        this.notifyService.showSuccess("Added to cart successfully !!", "Success")
-      }
-    });
-    this.cartService.getCartItems().subscribe(res => console.log(res)
-    );
+    if (this.authService.user_email) {
+      item = { ...item, user_email: this.authService.user_email }
+
+      this.cartService.addtoCart(item).subscribe(res => {
+        if (res) {
+          this.notifyService.showSuccess("Added to cart successfully !!", "Success")
+        }
+      });
+
+      this.cartService.getCartItems();
+    }
+    else {
+      this.router.navigate(['/login'])
+    }
   }
 }

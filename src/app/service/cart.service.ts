@@ -21,10 +21,7 @@ export class CartService {
   }
 
   addtoCart(product: any) {
-
-    console.log(product);
     this.getTotalPrice();
-    
     return this.http.post<any>(this.firebaseURL + "cart.json", product)
 
   }

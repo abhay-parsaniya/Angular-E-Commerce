@@ -50,18 +50,12 @@ export class HeaderComponent implements OnInit {
             res[key] = { ...res[key], id: key }
             return res[key];
           });
-          this.products = this.products.filter((product: any) => product.user_email == this.user_email)
+          this.products = this.products.filter((product: any) => product.user_email == this.authService.user_email)
 
           this.totalItem = this.products.length;
         });
     }
   }
-
-  // getUserEmail() {
-  //   const user_obj = JSON.parse(localStorage.getItem("user_token") as string);
-  //   if (user_obj)
-  //     this.user_email = user_obj.email
-  // }
 
   onLogOut() {
     this.totalItem = 0;
